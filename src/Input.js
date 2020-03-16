@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Input extends React.Component {
   constructor(props) {
@@ -13,20 +14,30 @@ class Input extends React.Component {
   };
 
   handleEnterUp = event => {
-    if (event.keyCode === 13) 
-    {
-      this.props.onSubmit(this.state.text);
+    if (event.keyCode === 13) {
+      window.location.pathname = `${this.state.text}`;
       this.setState({ text: '' });
     }
   };
 
   render() {
     return (
-      <div className="container">
-        <input placeholder="What say you?" type="text" value={this.state.text} onKeyUp={this.handleEnterUp} onChange={this.handleChange}/>
+      <div className="input">
+        <input
+          className="input__input"
+          placeholder="Search for gifs"
+          type="text"
+          value={this.state.text}
+          onKeyUp={this.handleEnterUp}
+          onChange={this.handleChange}
+        />
       </div>
     );
   }
 }
+
+Input.propTypes = {
+  onSubmit: PropTypes.func,
+};
 
 export default Input;

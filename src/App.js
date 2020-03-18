@@ -1,17 +1,18 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
 import Input from './Input';
 import Gifs from './Gifs';
 import Arrow from './assets/left-arrow.png';
 
 class App extends React.Component {
+
   render() {
     return (
       <div className="searcher">
         <Router>
-          <Link to="/" className="searcher__back">
+          <NavLink exact to="/" activeClassName="searcher__back">
             <img className="searcher__back--arrow" alt="arrow" src={Arrow} />
-          </Link>
+          </NavLink>
           <Switch>
             <Route exact path="/">
               <Input />

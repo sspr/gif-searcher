@@ -62,13 +62,14 @@ body {
 }
 
 .searcher__back {
+  display: none;
+}
+
+.searcher__back--arrow {
   position: absolute;
   top: 0;
   left: 0;
   margin: 25px;
-}
-
-.searcher__back--arrow {
   width: 32px;
   height: 32px;
 }

@@ -1,10 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, NavLink, useHistory } from 'react-router-dom';
 import Input from './Input';
 import Gifs from './Gifs';
 import Arrow from './assets/left-arrow.png';
 
 class App extends React.Component {
+  search = url => {
+    let history = useHistory();
+    history.push(url);
+  };
 
   render() {
     return (
@@ -15,7 +19,7 @@ class App extends React.Component {
           </NavLink>
           <Switch>
             <Route exact path="/">
-              <Input />
+              <Input enterUp={this.search} />
             </Route>
             <Route path="/:url" component={Gifs} />
           </Switch>

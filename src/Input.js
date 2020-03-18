@@ -15,7 +15,7 @@ class Input extends React.Component {
 
   handleEnterUp = event => {
     if (event.keyCode === 13) {
-      window.location.pathname = this.state.text;
+      this.props.enterUp(this.state.text);
       this.setState({ text: '' });
     }
   };

@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import copy from 'copy-text-to-clipboard';
 
 const LIMIT = 10;
-const copy = require('copy-text-to-clipboard');
 
 class Gifs extends React.Component {
   state = {
@@ -21,9 +20,7 @@ class Gifs extends React.Component {
   };
 
   searchGif = () => {
-    const queryUrl = `https://api.tenor.com/v1/search?key=${
-      process.env.REACT_APP_TENOR_GIF_API_KEY
-    }&tag=${window.location.pathname.substring(1, window.location.pathname.length)}&limit=${LIMIT}`;
+    const queryUrl = `https://api.tenor.com/v1/search?key=${process.env.REACT_APP_TENOR_GIF_API_KEY}&tag=${this.props.match.params.url}&limit=${LIMIT}`;
 
     fetch(queryUrl)
       .then(response => response.json())
@@ -32,7 +29,9 @@ class Gifs extends React.Component {
 
         this.setState({ gifs });
       })
-      .catch(() => {alert('error')});
+      .catch(() => {
+        alert('error');
+      });
   };
 
   render() {

@@ -73,3 +73,9 @@ body {
   width: 32px;
   height: 32px;
 }
+
+.gifs__error
+{
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}

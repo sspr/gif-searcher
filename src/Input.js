@@ -2,12 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Input extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: '',
-    };
-  }
+  state = {
+    text: '',
+  };
 
   handleChange = ({ target: { value } }) => {
     this.setState({ text: value });
@@ -15,7 +12,7 @@ class Input extends React.Component {
 
   handleEnterUp = event => {
     if (event.keyCode === 13) {
-      this.props.enterUp(this.state.text);
+      this.props.history.push(this.state.text);
       this.setState({ text: '' });
     }
   };

@@ -7,6 +7,7 @@ class Gifs extends React.Component {
   state = {
     gifs: [],
     loading: 0,
+    error: false,
   };
 
   componentDidMount() {
@@ -19,25 +20,25 @@ class Gifs extends React.Component {
     }));
   };
 
+  gifsRequest = async url => {
+    const response = await fetch(url).catch(err => {
+      throw new Error(err);
+    });
+    const data = await response.json();
+    const gifs = await data.results.map(gif => gif.media[0].gif.url);
+    this.setState({ gifs });
+  };
+
   searchGif = () => {
     const queryUrl = `https://api.tenor.com/v1/search?key=${process.env.REACT_APP_TENOR_GIF_API_KEY}&tag=${this.props.match.params.url}&limit=${LIMIT}`;
 
-    fetch(queryUrl)
-      .then(response => response.json())
-      .then(data => {
-        const gifs = data.results.map(gif => gif.media[0].gif.url);
-
-        this.setState({ gifs });
-      })
-      .catch(() => {
-        alert('error');
-      });
+    this.gifsRequest(queryUrl).catch(() => this.setState({ error: true }));
   };
 
   render() {
     return (
       <div className="gifs">
-        {this.state.loading < LIMIT && (
+        {this.state.loading < LIMIT && !this.state.error && (
           <div className="gifs__spinner">
             <img alt="spinner" src="https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" />
           </div>
@@ -53,6 +54,11 @@ class Gifs extends React.Component {
             />
           </div>
         ))}
+        {this.state.error && (
+          <div className="gifs__error">
+            An error occured. Please try again later. <br/><br/> Sorry for any inconvenience.
+          </div>
+        )}
       </div>
     );
   }

@@ -21,9 +21,7 @@ class Gifs extends React.Component {
   };
 
   gifsRequest = async url => {
-    const response = await fetch(url).catch(err => {
-      throw new Error(err);
-    });
+    const response = await fetch(url);
     const data = await response.json();
     const gifs = await data.results.map(gif => gif.media[0].gif.url);
     this.setState({ gifs });

@@ -20,17 +20,22 @@ class Gifs extends React.Component {
     }));
   };
 
-  gifsRequest = async url => {
-    const response = await fetch(url);
-    const data = await response.json();
-    const gifs = await data.results.map(gif => gif.media[0].gif.url);
-    this.setState({ gifs });
+  requestGifs = async url => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      const gifs = await data.results.map(gif => gif.media[0].gif.url);
+      this.setState({ gifs });
+    }
+    catch {
+      this.setState({ error: true });
+    }
   };
 
   searchGif = () => {
-    const queryUrl = `https://api.tenor.com/v1/search?key=${process.env.REACT_APP_TENOR_GIF_API_KEY}&tag=${this.props.match.params.url}&limit=${LIMIT}`;
+    const queryUrl = `errhttps://api.tenor.com/v1/search?key=${process.env.REACT_APP_TENOR_GIF_API_KEY}&tag=${this.props.match.params.url}&limit=${LIMIT}`;
 
-    this.gifsRequest(queryUrl).catch(() => this.setState({ error: true }));
+    this.requestGifs(queryUrl);
   };
 
   render() {
@@ -54,7 +59,7 @@ class Gifs extends React.Component {
         ))}
         {this.state.error && (
           <div className="gifs__error">
-            An error occured. Please try again later. <br/><br/> Sorry for any inconvenience.
+            An error occured. Please try again later. <br /><br /> Sorry for any inconvenience.
           </div>
         )}
       </div>

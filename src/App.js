@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
+import Input from './Input';
+import Gifs from './Gifs';
+import Arrow from './assets/left-arrow.png';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <div className="searcher">
+        <Router>
+          <NavLink exact to="/" activeClassName="searcher__back">
+            <img className="searcher__back--arrow" alt="arrow" src={Arrow} />
+          </NavLink>
+          <Switch>
+            <Route exact path="/" component={Input} />
+            <Route path="/:url" component={Gifs} />
+          </Switch>
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;

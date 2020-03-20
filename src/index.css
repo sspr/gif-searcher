@@ -1,13 +1,81 @@
 body {
+  position: relative;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.input__input {
+  width: 100%;
+  line-height: 25px;
+  height: 25px;
+  font-size: 20px;
+  text-align: center;
+  margin: auto;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+
+.input__input::placeholder {
+  color: #222;
+}
+
+.input__input:focus{
+  outline: none;
+}
+
+.searcher {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  width: 70%;
+  line-height: 25px;
+  height: 25px;
+}
+
+.gifs {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  height: auto;
+  justify-content: center;
+}
+.gifs__gif {
+  height: 150px;
+  margin: 5px;
+}
+
+.gifs__spinner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.searcher__back {
+  display: none;
+}
+
+.searcher__back--arrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 25px;
+  width: 32px;
+  height: 32px;
+}
+
+.gifs__error
+{
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
 }

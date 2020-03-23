@@ -4,8 +4,7 @@ import Input from './Input';
 import Gifs from './Gifs';
 import Arrow from './assets/left-arrow.png';
 
-class App extends React.Component {
-  render() {
+function App() {
     return (
       <div className="searcher">
         <Router>
@@ -19,7 +18,6 @@ class App extends React.Component {
         </Router>
       </div>
     );
-  }
 }
 
 export default App;

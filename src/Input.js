@@ -1,36 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-class Input extends React.Component {
-  state = {
-    text: '',
-  };
+function Input(props) {
+  const [text, setText] = useState('');
 
-  handleChange = ({ target: { value } }) => {
-    this.setState({ text: value });
-  };
-
-  handleEnterUp = event => {
-    if (event.keyCode === 13) {
-      this.props.history.push(this.state.text);
-      this.setState({ text: '' });
-    }
-  };
-
-  render() {
-    return (
-      <div className="input">
-        <input
-          className="input__input"
-          placeholder="Search for gifs"
-          type="text"
-          value={this.state.text}
-          onKeyUp={this.handleEnterUp}
-          onChange={this.handleChange}
-        />
-      </div>
-    );
+  function handleChange(event) {
+    setText(event.target.value);
   }
+
+  function handleEnterUp(event) {
+    if (event.keyCode === 13) {
+      props.history.push(text);
+      setText('');
+    }
+  }
+
+  return (
+    <div className="input">
+      <input
+        className="input__input"
+        placeholder="Search for gifs"
+        type="text"
+        value={text}
+        onKeyUp={handleEnterUp}
+        onChange={handleChange}
+      />
+    </div>
+  );
 }
 
 Input.propTypes = {

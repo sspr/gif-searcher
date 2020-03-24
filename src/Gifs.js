@@ -8,9 +8,12 @@ function Gifs(props) {
   const [loading, setLoading] = useState(0);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
-    searchGif();
-  });
+  useEffect(
+    () => {
+      searchGif();
+    },
+    [props.match.params.url],
+  );
 
   async function gifsRequest(url) {
     try {

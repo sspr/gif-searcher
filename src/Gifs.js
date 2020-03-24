@@ -12,10 +12,6 @@ function Gifs(props) {
     searchGif();
   });
 
-  function handleSingleImgLoad() {
-    setLoading(loading + 1);
-  }
-
   async function gifsRequest(url) {
     try {
       const response = await fetch(url);
@@ -30,7 +26,6 @@ function Gifs(props) {
 
   function searchGif() {
     const queryUrl = `https://api.tenor.com/v1/search?key=${process.env.REACT_APP_TENOR_GIF_API_KEY}&tag=${props.match.params.url}&limit=${LIMIT}`;
-
     gifsRequest(queryUrl);
   }
 
@@ -46,7 +41,7 @@ function Gifs(props) {
           <img
             className="gifs__gif"
             alt="This is gif"
-            onLoad={handleSingleImgLoad}
+            onLoad={() => setLoading(loading + 1)}
             onClick={event => copy(event.target.src)}
             src={gif}
           />

@@ -4,10 +4,6 @@ import PropTypes from 'prop-types';
 function Input(props) {
   const [text, setText] = useState('');
 
-  function handleChange(event) {
-    setText(event.target.value);
-  }
-
   function handleEnterUp(event) {
     if (event.keyCode === 13) {
       props.history.push(text);
@@ -23,7 +19,7 @@ function Input(props) {
         type="text"
         value={text}
         onKeyUp={handleEnterUp}
-        onChange={handleChange}
+        onChange={event => setText(event.target.value)}
       />
     </div>
   );

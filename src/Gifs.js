@@ -17,16 +17,21 @@ function Gifs(props) {
   }
 
   async function gifsRequest(url) {
-    const response = await fetch(url);
-    const data = await response.json();
-    const recivedGifs = await data.results.map(gif => gif.media[0].gif.url);
-    setGifs(recivedGifs);
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      const recivedGifs = await data.results.map(gif => gif.media[0].gif.url);
+      setGifs(recivedGifs);
+    }
+    catch {
+      setError(true);
+    }
   }
 
   function searchGif() {
     const queryUrl = `https://api.tenor.com/v1/search?key=${process.env.REACT_APP_TENOR_GIF_API_KEY}&tag=${props.match.params.url}&limit=${LIMIT}`;
 
-    gifsRequest(queryUrl).catch(() => setError(true));
+    gifsRequest(queryUrl);
   }
 
   return (
